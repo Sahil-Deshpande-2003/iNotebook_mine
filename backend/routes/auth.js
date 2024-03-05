@@ -38,11 +38,13 @@ router.post('/createuser',[
     const salt = await bcrypt.genSalt(10);
     const secPass = await bcrypt.hash(req.body.password, salt);
 
+    success = true;
+
     user = await User_model.create({
         name: req.body.name,
         email: req.body.email,
         password: secPass,
-      }).then(user => res.json(user));
+      }).then(user => res.json(success,user));
     }catch(error){
 
         return res.status(400).json({success,error:error.message})

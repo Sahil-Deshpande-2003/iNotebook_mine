@@ -5,6 +5,9 @@ const fetchUserID = (req, res, next) => {
   // using auth token and JWT SECRET u can fetch user's data which has user's id
 
   try {
+    // console.log("Hi!")
+    // console.log("Inside fetchUserID")
+
     const token = req.header("auth-token");
 
     if (!token) {
@@ -21,7 +24,7 @@ const fetchUserID = (req, res, next) => {
     next();
     console.log("I am here")
   } catch (error) {
-    return res.status(400).json({ errors: error.message });
+    return res.status(400).json({ errors: "Please authenciate using a valid token"});
   }
 };
 
