@@ -20,7 +20,7 @@ export default function Notes() {
 
           return <div className="col-md-4 my-2">
 
-            <Noteitem title={note.title} description={note.description} tag={note.tag}/>
+            <Noteitem title={note.title} description={note.description} tag={note.tag} id={note._id}/>
           </div>
         })}
       </div>

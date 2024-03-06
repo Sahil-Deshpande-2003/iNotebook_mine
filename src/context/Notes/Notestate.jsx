@@ -69,28 +69,54 @@ export default function Notestate(props) {
       console.log("About to print whole notes array")
       console.log(notes)
 
-      // const note_dummy = {
-      //   "_id": "65e64294a67f840ed027c882",
-      //   "user": "65e5f4efb3b2c1da09aaa224",
-      //   "title": "Racing_updated",
-      //   "description": "F1 Racing_updated",
-      //   "tag": "Cars_updated",
-      //   "date": "2024-03-04T21:52:20.698Z",
-      //   "__v": 0
-      // }
-
-      //  setNotes(notes.concat(note_dummy))
-
     }
 
-    const delete_note = (id)=>{
+    const delete_note = async(id)=>{
 
-      // API CALL
+      console.log("Printing id of note to be deleted")
 
-      const newNotes = notes.map((note)=>{
+      console.log(id)
+
+      let url = `http://localhost:3000/api/notes/deletenote/${id}`
+
+      const response = await fetch(url, {
+
+        method: "DELETE",
+
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNWY0ZWZiM2IyYzFkYTA5YWFhMjI0In0sImlhdCI6MTcwOTU4OTA0OX0.7ZAScY1Zecl4Ck6Av5GoI1STHa7tent8nGm_Vgtv6tA"
+        },
+
+
+
+        
+      });
+
+      let json = await response.json()
+
+      console.log("Printing response after API call")
+
+      console.log(json)
+
+      
+
+      console.log("Printing original NOtes")
+
+      console.log(notes)
+
+      console.log("Printing id")
+
+      console.log(id)
+
+      const newNotes = notes.filter((note)=>{
 
         return note._id!=id
       })
+
+      console.log("Printing new NOtes")
+
+      console.log(newNotes)
 
       setNotes(newNotes)
 
@@ -125,7 +151,7 @@ export default function Notestate(props) {
   return (
     <div>
 
-        <noteContext.Provider value={{notes,add_note,fetch_note}}>
+        <noteContext.Provider value={{notes,add_note,fetch_note,delete_note}}>
             {props.children}
         </noteContext.Provider>
       
