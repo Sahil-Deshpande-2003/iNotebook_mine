@@ -42,37 +42,44 @@ export default function Notestate(props) {
 
       // API CALL
 
-      // console.log("Inside notestate")
+      console.log("Inside notestate ka add_note")
 
       // console.log(note)
 
-      // let url = "http://localhost:3000/api/notes/addnote"
+      let url = "http://localhost:3000/api/notes/addnote"
 
-      // const response = await fetch(url, {
+      const response = await fetch(url, {
 
-      //   method: "POST",
+        method: "POST",
 
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(note.title,note.description,note.tag), // body data type must match "Content-Type" header
-      // });
-      // const json = await response.json(); // parses JSON response into native JavaScript objects
-      // console.log(json)
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNWY0ZWZiM2IyYzFkYTA5YWFhMjI0In0sImlhdCI6MTcwOTU4OTA0OX0.7ZAScY1Zecl4Ck6Av5GoI1STHa7tent8nGm_Vgtv6tA"
+        },
+        // body: JSON.stringify(note), // IDK WHETHER TO DO body: JSON.stringify(note) OR body: JSON.stringify(note.title,note.desc,note.tag)
+        body: JSON.stringify({title:note.title,description:note.description,tag:note.tag}), // IDK WHETHER TO DO body: JSON.stringify(note) OR body: JSON.stringify(note.title,note.desc,note.tag)
+      });
+      const json = await response.json(); // parses JSON response into native JavaScript objects
+      console.log("About to print the json fetched from API")
+      console.log(json)
+      console.log("About to print the note fetched from API")
+      console.log(json.savedNote)
+      
+      setNotes(notes.concat(json.savedNote))
+      console.log("About to print whole notes array")
+      console.log(notes)
 
-      // setNotes(notes.concat(json))
+      // const note_dummy = {
+      //   "_id": "65e64294a67f840ed027c882",
+      //   "user": "65e5f4efb3b2c1da09aaa224",
+      //   "title": "Racing_updated",
+      //   "description": "F1 Racing_updated",
+      //   "tag": "Cars_updated",
+      //   "date": "2024-03-04T21:52:20.698Z",
+      //   "__v": 0
+      // }
 
-      const note_dummy = {
-        "_id": "65e64294a67f840ed027c882",
-        "user": "65e5f4efb3b2c1da09aaa224",
-        "title": "Racing_updated",
-        "description": "F1 Racing_updated",
-        "tag": "Cars_updated",
-        "date": "2024-03-04T21:52:20.698Z",
-        "__v": 0
-      }
-
-       setNotes(notes.concat(note_dummy))
+      //  setNotes(notes.concat(note_dummy))
 
     }
 
