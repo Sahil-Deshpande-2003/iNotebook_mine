@@ -1,15 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import noteContext from "../context/Notes/Notecontext"
-export default function Display_notes(props) {
+export default function Noteitem(props) {
 
     const a = useContext(noteContext)
 
-    // useEffect(()=>{
 
-    //     console.log("Inside useEffect of display notes")
-
-    //     a.fetch_note()
-    // })
 
   return (
     <div>

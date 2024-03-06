@@ -34,7 +34,7 @@ export default function Notestate(props) {
 
 
     // const [notes,setNotes] = useState({"title":"","description":"","tag":""})
-    const [notes,setNotes] = useState(note_array)
+    const [notes,setNotes] = useState([])
 
 
 
@@ -101,11 +101,14 @@ export default function Notestate(props) {
 
         headers: {
           "Content-Type": "application/json",
+          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNWY0ZWZiM2IyYzFkYTA5YWFhMjI0In0sImlhdCI6MTcwOTU4OTA0OX0.7ZAScY1Zecl4Ck6Av5GoI1STHa7tent8nGm_Vgtv6tA"
         },
         
       });
       const json = await response.json(); // parses JSON response into native JavaScript objects
-      setNotes(json)
+      console.log("Printing notes after API call")
+      console.log(json.notes)
+      setNotes(json.notes)
     }
 
    
