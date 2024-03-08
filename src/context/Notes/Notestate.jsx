@@ -2,38 +2,8 @@ import React, { useState } from 'react'
 import noteContext from './Notecontext'
 export default function Notestate(props) {
 
-    const note_array = [
-        {
-            "_id": "65e64294a67f840ed027c882",
-            "user": "65e5f4efb3b2c1da09aaa224",
-            "title": "Racing_updated",
-            "description": "F1 Racing_updated",
-            "tag": "Cars_updated",
-            "date": "2024-03-04T21:52:20.698Z",
-            "__v": 0
-          },
-          {
-            "_id": "65e79d8bc6d3c8b2b40f9eb8",
-            "user": "65e5f4efb3b2c1da09aaa224",
-            "title": "Grocery",
-            "description": "Big Basked",
-            "tag": "General",
-            "date": "2024-03-05T22:32:43.585Z",
-            "__v": 0
-          },
-          {
-            "_id": "65e79da8c6d3c8b2b40f9ebc",
-            "user": "65e5f4efb3b2c1da09aaa224",
-            "title": "Bachav",
-            "description": "Attack on territory",
-            "tag": "Defence",
-            "date": "2024-03-05T22:33:12.120Z",
-            "__v": 0
-          }
-    ]
+  
 
-
-    // const [notes,setNotes] = useState({"title":"","description":"","tag":""})
     const [notes,setNotes] = useState([])
 
 
@@ -126,6 +96,8 @@ export default function Notestate(props) {
 
     const fetch_note = async()=>{
 
+      console.log("Inside fetch note function of notestate.jsx")
+
       let url = "http://localhost:3000/api/notes/getnote"
 
       const response = await fetch(url, {
@@ -144,6 +116,69 @@ export default function Notestate(props) {
       setNotes(json.notes)
     }
 
+    const update_note = async(id,title,description,tag)=>{
+
+
+
+      console.log("Inside updateNote function of Notestate.jsx")
+
+      console.log("required id = " + id)
+
+      let url = `http://localhost:3000/api/notes/updatenote/${id}`
+
+      const response = await fetch(url, {
+
+        method: "PUT",
+
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNWY0ZWZiM2IyYzFkYTA5YWFhMjI0In0sImlhdCI6MTcwOTU4OTA0OX0.7ZAScY1Zecl4Ck6Av5GoI1STHa7tent8nGm_Vgtv6tA"
+        },
+
+        body: JSON.stringify({title,description,tag}),
+        
+      });
+
+      const json = await response.json();
+      console.log("About to print json after API Call")
+      console.log(json.note)
+
+      setNotes(json.note)
+      
+      let newNotes = JSON.parse(JSON.stringify(notes))
+
+      for (let index = 0; index < newNotes.length; index++) {
+
+          console.log("Current id = " + newNotes[index]._id)
+
+          if (newNotes[index]._id === id){
+
+            console.log("Original title = " + newNotes[index].title)
+            console.log("New title = " + title)
+            console.log("Original description = " + newNotes[index].description)
+            console.log("New description = " + description)
+            console.log("Original tag = " + newNotes[index].tag)
+            console.log("New tag = " + tag)
+
+            newNotes[index].title = title
+            newNotes[index].description = description
+            newNotes[index].tag = tag
+            console.log("About to print updated note")
+            console.log(newNotes[index])
+            break
+          }
+
+        }
+
+
+        setNotes(newNotes)
+
+      }
+
+
+
+        
+
    
 
     
@@ -151,7 +186,7 @@ export default function Notestate(props) {
   return (
     <div>
 
-        <noteContext.Provider value={{notes,add_note,fetch_note,delete_note}}>
+        <noteContext.Provider value={{notes,add_note,fetch_note,delete_note,update_note}}>
             {props.children}
         </noteContext.Provider>
       

@@ -54,7 +54,7 @@ export default function Add_note() {
 
 
     // const [note,setNote] = useState([])
-    const [note,setNote] = useState({"title":"","description":"","tag":""})
+    const [note,setNote] = useState({title:"",description:"",tag:""})
 
     const a = useContext(noteContext)
 
