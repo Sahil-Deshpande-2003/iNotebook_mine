@@ -25,7 +25,9 @@ export default function Navbar() {
         </li>
        
       </ul>
-
+      <Link to="/login" class="btn btn-primary mx-2" tabIndex="-1" role="button" aria-disabled="true">Login</Link>
+      <Link to="/signup" class="btn btn-primary mx-2" tabIndex="-1" role="button" aria-disabled="true">Sign Up</Link>
+      
     </div>
   </div>
 </nav>

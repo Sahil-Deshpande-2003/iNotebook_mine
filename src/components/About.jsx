@@ -6,7 +6,7 @@ export default function About() {
 
   return (
     <div>
-        This is about {a.state.name}
+        This is about 
       
     </div>
   )

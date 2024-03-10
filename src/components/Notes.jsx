@@ -11,6 +11,10 @@ export default function Notes() {
   
   useEffect(()=>{
 
+    console.log("Inside useEffect of Notes.jsx")
+
+    console.log(localStorage.getItem('token'))
+
     a.fetch_note();
 
   },[])
@@ -114,7 +118,9 @@ export default function Notes() {
   </div>
 </div>
 
-      <div className="row">
+      <div className="row my-2">
+
+        {a.notes.length === 0 && <h2>No notes to display</h2>}
 
         {a.notes.map((note)=>{
 

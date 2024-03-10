@@ -60,7 +60,8 @@ export default function Add_note() {
 
     const onChange = (e)=>{
 
-        
+        // e.preventDefault wala dekhna hai!!
+
         // setNotes({...note,[e.target.name]:e.target.value})
 
         setNote({...note,[e.target.name]:e.target.value})
@@ -71,6 +72,8 @@ export default function Add_note() {
     const onClick = ()=>{
 
       a.add_note(note)
+
+      setNote({title:"",description:"",tag:""})
     }
 
   return (
