@@ -27,6 +27,7 @@ export default function Login(props) {
         body: JSON.stringify({email:credentials.email,password:credentials.password}), // IDK WHETHER TO DO body: JSON.stringify(note) 
       });
       const json = await response.json(); 
+      console.log("Printing response after fetching loginuser")
       console.log(json)
 
       if (json.success){

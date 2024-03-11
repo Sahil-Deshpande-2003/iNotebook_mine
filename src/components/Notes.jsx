@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/Notes/Notecontext'
 import Noteitem from './Noteitem'
+import { useNavigate } from "react-router-dom";
 export default function Notes() {
 
   const a = useContext(noteContext)
@@ -8,6 +9,8 @@ export default function Notes() {
   const ref = useRef(null)
 
   const refClose = useRef(null)
+
+  const navigate = useNavigate();
   
   useEffect(()=>{
 
@@ -15,7 +18,20 @@ export default function Notes() {
 
     console.log(localStorage.getItem('token'))
 
-    a.fetch_note();
+    if (localStorage.getItem('token')){
+
+      console.log("Printing token inside if")
+
+      console.log(localStorage.getItem('token'))
+
+      a.fetch_note();
+    }
+
+    else{
+
+      navigate("/login");
+    }
+
 
   },[])
 

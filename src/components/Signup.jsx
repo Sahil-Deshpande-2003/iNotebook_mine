@@ -27,6 +27,7 @@ export default function Signup(props) {
         body: JSON.stringify({email:credentials.email,password:credentials.password,name:credentials.name}), // IDK WHETHER TO DO body: JSON.stringify(note) 
       });
       const json = await response.json(); 
+      console.log("Printing response after fetching createuser")
       console.log(json)
 
       if (json.success){

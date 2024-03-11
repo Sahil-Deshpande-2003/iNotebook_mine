@@ -35,18 +35,29 @@ router.post('/createuser',[
         return res.status(400).json({ success,errors: "User with this email already exists" });
     }
 
+    console.log("I am here1")
     const salt = await bcrypt.genSalt(10);
+    console.log("I am here2")
     const secPass = await bcrypt.hash(req.body.password, salt);
 
     success = true;
-
+    console.log("I am here3")
     user = await User_model.create({
         name: req.body.name,
         email: req.body.email,
         password: secPass,
-      })
+    })
+    console.log("I am here4")
 
-      const authtoken = jwt.sign(data, JWT_SECRET);
+    let data = {
+
+        user:{
+            id:user.id
+        }
+    }
+    
+    const authtoken = jwt.sign(data, JWT_SECRET); // ek baar dekh ki ye create user me bhi kyu dalna pada!!!
+    console.log("I am here5")
 
       res.json({success,authtoken})
     }catch(error){

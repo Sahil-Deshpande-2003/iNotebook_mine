@@ -24,7 +24,7 @@ export default function Notestate(props) {
 
         headers: {
           "Content-Type": "application/json",
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNWY0ZWZiM2IyYzFkYTA5YWFhMjI0In0sImlhdCI6MTcwOTU4OTA0OX0.7ZAScY1Zecl4Ck6Av5GoI1STHa7tent8nGm_Vgtv6tA"
+          "auth-token":localStorage.getItem('token')
         },
         // body: JSON.stringify(note), // IDK WHETHER TO DO body: JSON.stringify(note) OR body: JSON.stringify(note.title,note.desc,note.tag)
         body: JSON.stringify({title:note.title,description:note.description,tag:note.tag}), // IDK WHETHER TO DO body: JSON.stringify(note) OR body: JSON.stringify(note.title,note.desc,note.tag)
@@ -55,7 +55,7 @@ export default function Notestate(props) {
 
         headers: {
           "Content-Type": "application/json",
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNWY0ZWZiM2IyYzFkYTA5YWFhMjI0In0sImlhdCI6MTcwOTU4OTA0OX0.7ZAScY1Zecl4Ck6Av5GoI1STHa7tent8nGm_Vgtv6tA"
+          "auth-token":localStorage.getItem('token')
         },
 
 
@@ -106,7 +106,7 @@ export default function Notestate(props) {
 
         headers: {
           "Content-Type": "application/json",
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNWY0ZWZiM2IyYzFkYTA5YWFhMjI0In0sImlhdCI6MTcwOTU4OTA0OX0.7ZAScY1Zecl4Ck6Av5GoI1STHa7tent8nGm_Vgtv6tA"
+          "auth-token":localStorage.getItem('token')
         },
         
       });
@@ -132,7 +132,7 @@ export default function Notestate(props) {
 
         headers: {
           "Content-Type": "application/json",
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNWY0ZWZiM2IyYzFkYTA5YWFhMjI0In0sImlhdCI6MTcwOTU4OTA0OX0.7ZAScY1Zecl4Ck6Av5GoI1STHa7tent8nGm_Vgtv6tA"
+          "auth-token":localStorage.getItem('token')
         },
 
         body: JSON.stringify({title,description,tag}),
